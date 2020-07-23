@@ -6,3 +6,5 @@ qrc_*
 ui_*
 DecaRangeRTLS
 *.xml
+Makefile
+*.pro.user

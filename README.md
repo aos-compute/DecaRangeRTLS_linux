@@ -5,6 +5,7 @@ This is a port of Decawave's RTLS PC application for the Linux platform. You nee
 * libqt5serialport5-dev
 * libblas-dev
 * liblapack-dev
+* libcpprest-dev
 
 To compile, use `qmake` (or `qmake -qt=qt5` if you have multiple versions of QT on your system), then `make`.
 The resulting executable would be `DecaRangeRTLS`.

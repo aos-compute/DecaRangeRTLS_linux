@@ -17,10 +17,15 @@ INCLUDEPATH += models network views util tools
 
 INCLUDEPATH += $$PWD/armadillo-3.930.0/include
 
+INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client
+INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/model
+INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/api
 
 LIBS += -L$$PWD/armadillo-3.930.0/lib/ -lblas
 
 LIBS += -L$$PWD/armadillo-3.930.0/lib/ -llapack
+
+LIBS += -lboost_system -lcrypto -lcpprest
 
 SOURCES += main.cpp\
     RTLSDisplayApplication.cpp \
@@ -38,7 +43,11 @@ SOURCES += main.cpp\
     util/QPropertyModel.cpp \
     network/SerialConnection.cpp \
     tools/trilateration.cpp \
-    aitheon/aos-decawave/TagsPositionProcessor.cpp
+    aitheon/aos-decawave/TagsPositionProcessor.cpp \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/model/*.cpp \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/api/*.cpp \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/*.cpp \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/SmartInfrastructure.cpp
 
 HEADERS  += \
     RTLSDisplayApplication.h \
@@ -57,7 +66,13 @@ HEADERS  += \
     util/QPropertyModel.h \
     network/SerialConnection.h \
     tools/trilateration.h \
-    aitheon/aos-decawave/TagsPositionProcessor.h
+    aitheon/aos-decawave/TagsPositionProcessor.h \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/model/*.h \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/api/*.h \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/*.h \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/SmartInfrastructure.hpp \
+    aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/SmartInfrastructureObserver.hpp
+
 FORMS    += \
     views/mainwindow.ui \
     views/GraphicsWidget.ui \
