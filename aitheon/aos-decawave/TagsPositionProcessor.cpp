@@ -1,5 +1,6 @@
 #include "TagsPositionProcessor.h"
 #include <QDebug>
+#include <cmath>
 
 namespace aos
 {
