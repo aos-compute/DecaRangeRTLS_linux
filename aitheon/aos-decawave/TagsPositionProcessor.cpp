@@ -29,12 +29,31 @@ void TagsPositionProcessor::rotatePointXY( Point& inOut, double angle )
     inOut.y = new_y;
 }
 
+void TagsPositionProcessor::setOffsetForPoint( Point& inOut,
+                                               double xOffset,
+                                               double yOffset,
+                                               double zOffset )
+{
+    inOut.x += xOffset;
+    inOut.y += yOffset;
+    inOut.z += zOffset;
+}
+
+void TagsPositionProcessor::scalePoint( Point& inOut, double xScale, double yScale, double zScale )
+{
+    inOut.x *= xScale;
+    inOut.y *= yScale;
+    inOut.z *= zScale;
+}
+
 void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z )
 {
     qDebug() << "Received tagId: " << QString::number( tagId, 16 ) << "x: " << x << "y: " << y;
 
     Point tag{ x, y, z };
     rotatePointYZ( tag, M_PI );
+    scalePoint( tag );
+    setOffsetForPoint( tag );
 
     qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << x << "y: " << y;
 
