@@ -1,0 +1,4 @@
+[submodule "aitheon/aros-pkg-ai-smart-infrastructure"]
+	path = aitheon/aros-pkg-ai-smart-infrastructure
+	url = https://github.com/aos-compute/aros-pkg-ai-smart-infrastructure
+	branch = decawave-dev
