@@ -16,7 +16,7 @@
 #include <QSerialPortInfo>
 #include <QMessageBox>
 
-#define DEVICE_STR ("STM32 Virtual ComPort")
+#define DEVICE_STR ("STM32 Virtual ComPort in FS Mode")
 #define INST_REPORT_LEN   (65)
 #define INST_REPORT_LEN_HEADER (20)
 #define INST_VERSION_LEN  (16)
