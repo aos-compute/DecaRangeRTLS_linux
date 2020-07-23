@@ -25,6 +25,10 @@ class GraphicsWidget;
 class GraphicsView;
 class RTLSClient;
 
+namespace aos
+{
+    class TagsPositionProcessor;
+}
 /**
  * The RTLSDisplayApplication class is a singleton class which handles the application.
  *
@@ -79,6 +83,8 @@ private:
     SerialConnection *_serialConnection;
 
     RTLSClient *_client;
+
+    aos::TagsPositionProcessor * _tagsPositionProcessor;
 
     MainWindow *_mainWindow;
 

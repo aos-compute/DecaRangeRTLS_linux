@@ -15,6 +15,8 @@
 #include "mainwindow.h"
 #include "SerialConnection.h"
 #include "RTLSClient.h"
+#include "aitheon/aos-decawave/TagsPositionProcessor.h"
+
 #include "ViewSettings.h"
 #include "GraphicsWidget.h"
 
@@ -48,6 +50,8 @@ RTLSDisplayApplication::RTLSDisplayApplication(int &argc, char **argv) : QApplic
 
     _client = new RTLSClient(this);
 
+    _tagsPositionProcessor = new aos::TagsPositionProcessor(this);
+
     _mainWindow = new MainWindow();
     _mainWindow->resize(desktopWidth/2,desktopHeight/2);
 
@@ -56,6 +60,7 @@ RTLSDisplayApplication::RTLSDisplayApplication(int &argc, char **argv) : QApplic
     //Connect the various signals and corresponding slots
     QObject::connect(_client, SIGNAL(anchPos(quint64,double,double,double,bool,bool)), graphicsWidget(), SLOT(anchPos(quint64,double,double,double,bool, bool)));
     QObject::connect(_client, SIGNAL(tagPos(quint64,double,double,double)), graphicsWidget(), SLOT(tagPos(quint64,double,double,double)));
+    QObject::connect(_client, SIGNAL(tagPos(quint64,double,double,double)), _tagsPositionProcessor, SLOT(tagPos(quint64,double,double,double)));
     QObject::connect(_client, SIGNAL(tagStats(quint64,double,double,double,double)), graphicsWidget(), SLOT(tagStats(quint64,double,double,double,double)));
     QObject::connect(_client, SIGNAL(tagRange(quint64,quint64,double)), graphicsWidget(), SLOT(tagRange(quint64,quint64,double)));
     QObject::connect(_client, SIGNAL(statusBarMessage(QString)), _mainWindow, SLOT(statusBarMessage(QString)));

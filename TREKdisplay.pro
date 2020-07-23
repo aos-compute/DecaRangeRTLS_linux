@@ -37,7 +37,8 @@ SOURCES += main.cpp\
     tools/ScaleTool.cpp \
     util/QPropertyModel.cpp \
     network/SerialConnection.cpp \
-    tools/trilateration.cpp
+    tools/trilateration.cpp \
+    aitheon/aos-decawave/TagsPositionProcessor.cpp
 
 HEADERS  += \
     RTLSDisplayApplication.h \
@@ -55,7 +56,8 @@ HEADERS  += \
     tools/ScaleTool.h \
     util/QPropertyModel.h \
     network/SerialConnection.h \
-    tools/trilateration.h
+    tools/trilateration.h \
+    aitheon/aos-decawave/TagsPositionProcessor.h
 FORMS    += \
     views/mainwindow.ui \
     views/GraphicsWidget.ui \
