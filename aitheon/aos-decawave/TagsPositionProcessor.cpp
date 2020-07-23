@@ -10,7 +10,7 @@ TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
 {
 }
 
-void TagsPositionProcessor::rotatePointYZ( Point& inOut, double angle )
+void TagsPositionProcessor::rotatePointYZ( Point& inOut, const double angle )
 {
     double new_y, new_z;
 
@@ -20,7 +20,7 @@ void TagsPositionProcessor::rotatePointYZ( Point& inOut, double angle )
     inOut.z = new_z;
 }
 
-void TagsPositionProcessor::rotatePointXY( Point& inOut, double angle )
+void TagsPositionProcessor::rotatePointXY( Point& inOut, const double angle )
 {
     double new_x, new_y;
 
@@ -31,16 +31,19 @@ void TagsPositionProcessor::rotatePointXY( Point& inOut, double angle )
 }
 
 void TagsPositionProcessor::setOffsetForPoint( Point& inOut,
-                                               double xOffset,
-                                               double yOffset,
-                                               double zOffset )
+                                               const double xOffset,
+                                               const double yOffset,
+                                               const double zOffset )
 {
     inOut.x += xOffset;
     inOut.y += yOffset;
     inOut.z += zOffset;
 }
 
-void TagsPositionProcessor::scalePoint( Point& inOut, double xScale, double yScale, double zScale )
+void TagsPositionProcessor::scalePoint( Point& inOut,
+                                        const double xScale,
+                                        const double yScale,
+                                        const double zScale )
 {
     inOut.x *= xScale;
     inOut.y *= yScale;
@@ -56,7 +59,8 @@ void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z 
     scalePoint( tag );
     setOffsetForPoint( tag );
 
-    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << x << "y: " << y;
+    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x
+             << "y: " << tag.y;
 
     // smart infrastructure call
 }
