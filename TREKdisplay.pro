@@ -17,9 +17,11 @@ INCLUDEPATH += models network views util tools
 
 INCLUDEPATH += $$PWD/armadillo-3.930.0/include
 
+INCLUDEPATH += $$PWD/aitheon/aos-decawave
 INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client
 INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/model
 INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure/cpprest-client/api
+INCLUDEPATH += $$PWD/aitheon/aros-pkg-ai-smart-infrastructure/aitheon-smart-infrastructure
 
 LIBS += -L$$PWD/armadillo-3.930.0/lib/ -lblas
 

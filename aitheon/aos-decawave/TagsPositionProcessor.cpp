@@ -8,6 +8,23 @@ namespace aos
 TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
     : QObject( parent )
 {
+    m_smartInfrastructure = std::make_unique<aros::SmartInfrastructure>(
+        "https://dev.aitheon.com",
+        "/smart-infrastructure",
+        "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTQ1MTAyNDVlMTYzZTAwMTBhNzIzMDYiLCJwcm9maWxlIjp7ImZpcnN0TmFtZSI6IkFydGVtIiwibGFzdE5hbWUiOiJCcmF6aG5pa292In0sImVtYWlsIjoiYWJyYXpobmlrb3ZAYWl0aGVvbi5jb20iLCJpYXQiOjE1OTU0OTgwMTEsImV4cCI6MTMzMjY4OTAwMTF9.9-4QYVniuE0INjxQTdHgFZguc3_-3QIy8589SDym08s",
+        "5e4512f85e163e0010a72314"
+    );
+    m_smartInfrastructure->setObserver(this);
+}
+
+void TagsPositionProcessor::onErrorOccured(const std::string & error)
+{
+    qDebug() << "Error occured: " << QString::fromStdString(error);
+}
+
+void TagsPositionProcessor::onTimeout()
+{
+    qDebug() << "API call timeout";
 }
 
 void TagsPositionProcessor::rotatePointYZ( Point& inOut, double angle )
@@ -37,8 +54,10 @@ void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z 
     Point tag{ x, y, z };
     rotatePointYZ( tag, M_PI );
 
-    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << x << "y: " << y;
+    tag.x = x * 100;
+    tag.y = y * 100;
+    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x << "y: " << tag.y;
 
-    // smart infrastructure call
+    m_smartInfrastructure->changePosition(m_tempDeviceId, abs(tag.x), abs(tag.y));
 }
 }
