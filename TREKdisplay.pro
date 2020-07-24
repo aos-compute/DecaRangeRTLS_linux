@@ -9,6 +9,10 @@ QT       += core gui network xml serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+macx: {
+    CONFIG += c++1z
+}
+
 TARGET = DecaRangeRTLS
 TEMPLATE = app
 QMAKE_INFO_PLIST = Info.plist
@@ -38,10 +42,17 @@ LIBS += -L$$PWD/armadillo-3.930.0/lib/ -lblas
 
 LIBS += -L$$PWD/armadillo-3.930.0/lib/ -llapack
 
-LIBS += -lcpprest -lssl -lcrypto -lboost_system -lboost_thread-mt -lboost_chrono-mt
+unix:!macx {
+    LIBS += -lboost_system -lcrypto -lcpprest
+}
+
+macx: {
+    LIBS += -lcpprest -lssl -lcrypto -lboost_system -lboost_thread-mt -lboost_chrono-mt
+}
 
 SOURCES += main.cpp\
     RTLSDisplayApplication.cpp \
+    aitheon/aos-decawave/Geometry.cpp \
     views/mainwindow.cpp \
     network/RTLSClient.cpp \
     views/GraphicsView.cpp \
@@ -113,6 +124,7 @@ SOURCES += main.cpp\
 
 HEADERS  += \
     RTLSDisplayApplication.h \
+    aitheon/aos-decawave/Geometry.h \
 	views/mainwindow.h \
     network/RTLSClient.h \
     views/GraphicsView.h \
