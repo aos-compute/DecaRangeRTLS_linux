@@ -33,10 +33,22 @@ public slots:
 
 private:
     // just rotate XYZ point based on X (rotate YZ along X)
-    void rotatePointYZ( Point& inOut, double angle );
+    void rotatePointYZ( Point& inOut, const double angle );
 
     // just rotate XYZ point based on Z (rotate XY along Z)
-    void rotatePointXY( Point& inOut, double angle );
+    void rotatePointXY( Point& inOut, const double angle );
+
+    // for new coordinates system: in meters
+    void setOffsetForPoint( Point& inOut,
+                            const double xOffset = 0,
+                            const double yOffset = 0,
+                            const double zOffset = 0 );
+
+    // for new coordinates system: pixels to meters
+    void scalePoint( Point& inOut,
+                     const double xScale = 0.0198,
+                     const double yScale = 0.0198,
+                     const double zScale = 0.0198 );
 
 private:
     std::string m_tempDeviceId{ "5f19572c82e83100127da74f" };

@@ -27,7 +27,7 @@ void TagsPositionProcessor::onTimeout()
     qDebug() << "API call timeout";
 }
 
-void TagsPositionProcessor::rotatePointYZ( Point& inOut, double angle )
+void TagsPositionProcessor::rotatePointYZ( Point& inOut, const double angle )
 {
     double new_y, new_z;
 
@@ -37,7 +37,7 @@ void TagsPositionProcessor::rotatePointYZ( Point& inOut, double angle )
     inOut.z = new_z;
 }
 
-void TagsPositionProcessor::rotatePointXY( Point& inOut, double angle )
+void TagsPositionProcessor::rotatePointXY( Point& inOut, const double angle )
 {
     double new_x, new_y;
 
@@ -47,17 +47,38 @@ void TagsPositionProcessor::rotatePointXY( Point& inOut, double angle )
     inOut.y = new_y;
 }
 
+void TagsPositionProcessor::setOffsetForPoint( Point& inOut,
+                                               const double xOffset,
+                                               const double yOffset,
+                                               const double zOffset )
+{
+    inOut.x += xOffset;
+    inOut.y += yOffset;
+    inOut.z += zOffset;
+}
+
+void TagsPositionProcessor::scalePoint( Point& inOut,
+                                        const double xScale,
+                                        const double yScale,
+                                        const double zScale )
+{
+    inOut.x *= xScale;
+    inOut.y *= yScale;
+    inOut.z *= zScale;
+}
+
 void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z )
 {
     qDebug() << "Received tagId: " << QString::number( tagId, 16 ) << "x: " << x << "y: " << y;
 
     Point tag{ x, y, z };
     rotatePointYZ( tag, M_PI );
+    scalePoint( tag );
+    setOffsetForPoint( tag );
 
-    tag.x = x * 100;
-    tag.y = y * 100;
-    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x << "y: " << tag.y;
+    qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x
+             << "y: " << tag.y;
 
-    m_smartInfrastructure->changePosition(m_tempDeviceId, abs(tag.x), abs(tag.y));
+    m_smartInfrastructure->changePosition(m_tempDeviceId, abs(tag.x * 100), abs(tag.y * 100));
 }
 }
