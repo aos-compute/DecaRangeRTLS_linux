@@ -58,8 +58,8 @@ void Geometry::scalePoint( Point& inOut,
 
 void Geometry::getTransformedPoint( Point& inOut )
 {
-    rotatePointXZ( inOut, M_PI );
-    setOffsetForPoint( inOut, 7.0, 3.5 );
+    rotatePointYZ( inOut, M_PI );
+    setOffsetForPoint( inOut, anchor0.x, anchor0.y );
     scalePoint( inOut );
 }
 

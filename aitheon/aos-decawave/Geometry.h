@@ -1,5 +1,4 @@
 #pragma once
-#include <boost/noncopyable.hpp>
 
 namespace aos
 {
@@ -11,7 +10,7 @@ struct Point
     double z;
 };
 
-class Geometry : private boost::noncopyable
+class Geometry
 {
 public:
     Geometry();
@@ -20,6 +19,9 @@ public:
     void getTransformedPoint( Point& inOut );
 
 private:
+    Geometry( const Geometry& ) = delete;
+    Geometry& operator=( const Geometry& ) = delete;
+
     // just rotate XYZ point based on X (rotate YZ along X)
     void rotatePointYZ( Point& inOut, const double angle );
 
@@ -37,9 +39,11 @@ private:
 
     // for new coordinates system: pixels to meters
     void scalePoint( Point& inOut,
-                     const double xScale = 0.0198,
+                     const double xScale = 0.0099,
                      const double yScale = 0.0198,
                      const double zScale = 0.0198 );
+
+    const Point anchor0{ 495, 237, 0 };
 };
 
 } // namespace aos
