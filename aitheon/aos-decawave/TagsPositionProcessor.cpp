@@ -42,7 +42,7 @@ void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z 
     qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x
              << "y: " << tag.y;
 
-    m_smartInfrastructure->changePosition( m_tempDeviceId, abs( tag.x * 100 ), abs( tag.y * 100 ) );
+    m_smartInfrastructure->changePosition( m_tempDeviceId, tag.x, tag.y );
 }
 
 } // namespace aos

@@ -59,8 +59,8 @@ void Geometry::scalePoint( Point& inOut,
 void Geometry::getTransformedPoint( Point& inOut )
 {
     rotatePointYZ( inOut, M_PI );
-    setOffsetForPoint( inOut, anchor0.x, anchor0.y );
     scalePoint( inOut );
+    setOffsetForPoint( inOut, anchor0.x, anchor0.y );
 }
 
 } // namespace aos

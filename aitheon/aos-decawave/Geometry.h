@@ -39,9 +39,9 @@ private:
 
     // for new coordinates system: pixels to meters
     void scalePoint( Point& inOut,
-                     const double xScale = 0.0099,
-                     const double yScale = 0.0198,
-                     const double zScale = 0.0198 );
+                     const double xScale = 51,
+                     const double yScale = 56,
+                     const double zScale = 1 );
 
     const Point anchor0{ 495, 237, 0 };
 };
