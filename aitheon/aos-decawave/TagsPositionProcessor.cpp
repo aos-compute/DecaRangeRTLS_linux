@@ -8,6 +8,9 @@ namespace aos
 TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
     : QObject( parent )
 {
+    m_tagsToDevicesMap[0] = "5f19572c82e83100127da74f";
+    m_tagsToDevicesMap[1] = "5f1af6132a6564c7719bac99";
+    
     m_smartInfrastructure = std::make_unique< aros::SmartInfrastructure >(
         "https://dev.aitheon.com",
         "/smart-infrastructure",
@@ -42,7 +45,16 @@ void TagsPositionProcessor::tagPos( quint64 tagId, double x, double y, double z 
     qDebug() << "Converted tagId: " << QString::number( tagId, 16 ) << "x: " << tag.x
              << "y: " << tag.y;
 
-    m_smartInfrastructure->changePosition( m_tempDeviceId, tag.x, tag.y );
+    auto deviceId = m_tagsToDevicesMap.find(tagId);
+    if (deviceId != m_tagsToDevicesMap.end())
+    {
+        m_smartInfrastructure->changePosition( deviceId->second, tag.x, tag.y );
+    }
+    else
+    {
+        qDebug() << "Unknown Tag ID";
+    }
+    
 }
 
 } // namespace aos
