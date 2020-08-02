@@ -8,7 +8,7 @@ namespace aos
 TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
     : QObject( parent )
 {
-    m_tagsToDevicesMap[0] = "5f19572c82e83100127da74f";
+    m_tagsToDevicesMap[0] = "5f24634eeca0bf00121a8e0f";
     m_tagsToDevicesMap[1] = "5f1af6132a6564c7719bac99";
     
     m_smartInfrastructure = std::make_unique< aros::SmartInfrastructure >(
