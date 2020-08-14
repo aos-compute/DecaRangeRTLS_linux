@@ -8,8 +8,8 @@ namespace aos
 TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
     : QObject( parent )
 {
-    m_tagsToDevicesMap[0] = "5f24634eeca0bf00121a8e0f";
-    m_tagsToDevicesMap[1] = "5f1af6132a6564c7719bac99";
+    m_tagsToDevicesMap[0] = "5f28039133180a0011580225";
+    m_tagsToDevicesMap[1] = "5f2802ad33180a0011580219";
     
     m_smartInfrastructure = std::make_unique< aros::SmartInfrastructure >(
         "https://dev.aitheon.com",
@@ -19,7 +19,7 @@ TagsPositionProcessor::TagsPositionProcessor( QObject* parent )
         "eyJfaWQiOiI1ZTQ1MTAyNDVlMTYzZTAwMTBhNzIzMDYiLCJwcm9maWxlIjp7ImZpcnN0TmFtZSI6IkFydGVtIiwibG"
         "FzdE5hbWUiOiJCcmF6aG5pa292In0sImVtYWlsIjoiYWJyYXpobmlrb3ZAYWl0aGVvbi5jb20iLCJpYXQiOjE1OTU0"
         "OTgwMTEsImV4cCI6MTMzMjY4OTAwMTF9.9-4QYVniuE0INjxQTdHgFZguc3_-3QIy8589SDym08s",
-        "5e4512f85e163e0010a72314" );
+        "5f1de4371525f10012290049" );
     m_smartInfrastructure->setObserver( this );
     m_geometry = std::make_unique< Geometry >();
 }
